@@ -9,12 +9,12 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={(event) => this.handlerSubmit(event)}>
           <label htmlFor="login">Имя пользователя *</label>
           <input type="email" name="email"></input>
           <label htmlFor="password">Пароль *</label>
           <input type="password" name="password"></input>
-          <input type="submit" onClick={(event) => this.handlerSubmit(event)} value="Submit" />
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
