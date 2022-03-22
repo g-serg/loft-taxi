@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 class Login extends Component {
   handlerSubmit = (event) => {
     event.preventDefault();
-    this.props.onClick('Map');
+    this.props.onClick("Map");
   };
 
   render() {
