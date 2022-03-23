@@ -1,15 +1,15 @@
-import './App.css';
+import "./App.css";
 
-import React, {Component} from 'react';
-import Login from './Login';
-import Map from './Map';
-import Profile from './Profile';
+import React, {Component} from "react";
+import {Home} from "./Home";
+import {Map} from "./Map";
+import {Profile} from "./Profile";
 
 class App extends Component {
-  state = {currentPage: 'Login'};
+  state = {currentPage: "Home"};
 
   PAGES = {
-    Login: <Login onClick={(page) => this.navigateTo(page)} />,
+    Home: <Home onClick={(page) => this.navigateTo(page)} />,
     Map: <Map />,
     Profile: <Profile />,
   };
