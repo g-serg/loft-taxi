@@ -6,5 +6,6 @@ describe("Home", () => {
   it("renders correctly", () => {
     render(<Home />);
     expect(screen.getByLabelText("Email:")).toHaveAttribute("name", "email");
+    expect(screen.getByLabelText("Password:")).toHaveAttribute("name", "password");
   });
 });

@@ -1,23 +1,26 @@
 import "./App.css";
 
 import React, { Component } from "react";
-import { Home } from "./Home";
+import { HomeWithAuth } from "./Home";
 import { Map } from "./Map";
-import { Profile } from "./Profile";
+import { ProfileWithAuth } from "./Profile";
+import { withAuth } from "./AuthContext";
+
+const PAGES = {
+  home: (props) => <HomeWithAuth {...props} />,
+  map: (props) => <Map {...props} />,
+  profile: (props) => <ProfileWithAuth {...props} />,
+};
 
 class App extends Component {
-  state = { currentPage: "Home" };
-
-  PAGES = {
-    Home: <Home onClick={(page) => this.navigateTo(page)} />,
-    Map: <Map />,
-    Profile: <Profile />,
-  };
+  state = { currentPage: "home" };
 
   navigateTo = (page) => {
-    this.setState({
-      currentPage: page,
-    });
+    if (this.props.isLoggenIn) {
+      this.setState({ currentPage: page });
+    } else {
+      this.setState({ currentPage: "home" });
+    }
   };
 
   render() {
@@ -26,19 +29,21 @@ class App extends Component {
         <header>
           <div>{this.state.currentPage}</div>
           <nav>
-            {Object.keys(this.PAGES).map((page) => (
-              <button key={page} onClick={() => this.navigateTo(page)}>
-                {page}
-              </button>
-            ))}
+            <ul>
+              {Object.keys(PAGES).map((page) => (
+                <li key={page}>
+                  <button onClick={() => this.navigateTo(page)}>{page}</button>
+                </li>
+              ))}
+            </ul>
           </nav>
         </header>
         <main>
-          <section>{this.PAGES[this.state.currentPage]}</section>
+          <section>{PAGES[this.state.currentPage]({ navigate: this.navigateTo })}</section>
         </main>
       </>
     );
   }
 }
 
-export default App;
+export default withAuth(App);
