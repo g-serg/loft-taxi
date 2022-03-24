@@ -1,6 +1,6 @@
 import mapboxGl from "mapbox-gl";
-import React, {Component} from "react";
-import {mapboxGlAccessToken} from "./secret";
+import React, { Component } from "react";
+import { mapboxGlAccessToken } from "./secret";
 
 export class Map extends Component {
   map = null;
